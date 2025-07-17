@@ -7,7 +7,7 @@ Helps users manage their finances by categorizing expenses and displaying income
 
 ## 📸 Screenshots
 
-> 📷 Add screenshots here later (e.g., dashboard view, add expense form, etc.)
+> 📷(comming soon)
 
 ---
 
