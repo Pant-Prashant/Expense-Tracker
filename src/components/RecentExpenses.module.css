@@ -1,0 +1,20 @@
+.box ul {
+  margin: 0;
+  padding: 0;
+}
+
+.box li {
+  line-height: 25px;
+  border-bottom: 1px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-style: solid;
+  border-color: rgba(128, 128, 128, 0.362);
+  margin: 3px;
+}
+
+.box h3 {
+  font-weight: 550;
+  margin-bottom: 25px;
+}

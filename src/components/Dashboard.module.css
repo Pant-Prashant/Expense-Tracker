@@ -1,0 +1,73 @@
+.balance {
+  font-size: 30px;
+  font-weight: 600;
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.top-div {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.add-button {
+  background-color: rgba(255, 255, 255, 0);
+  margin: 10px;
+  margin-top: 20px;
+  padding: 0px;
+  border: 0px;
+  font-size: 17px;
+  transition: 0.25s;
+}
+
+.add-button:hover {
+  color: rgb(0, 196, 0);
+}
+
+.add-button:hover ~ .add-income {
+  visibility: visible;
+}
+
+.expense-button {
+  background-color: rgba(255, 255, 255, 0);
+  margin: 10px;
+  margin-top: 25px;
+  padding: 0px;
+  border: 0px;
+  font-size: 17px;
+  transition: 0.25s;
+}
+
+.expense-button:hover {
+  color: rgb(255, 0, 0);
+}
+
+.line {
+  height: 100%;
+  width: 1.5px;
+  background-color: rgba(154, 154, 154, 0.252);
+}
+
+.lower-div {
+  height: calc(100% - 162px);
+  width: 100%;
+  padding: 10px 11%;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.blur-background {
+  position: absolute;
+  border-radius: 20px;
+  top: 8px;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  z-index: 9;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}

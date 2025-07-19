@@ -1,0 +1,21 @@
+.box ul {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  padding-top: 10px;
+  text-align: center;
+  vertical-align: middle;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.box li {
+  border-bottom: 1px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-style: solid;
+  border-color: rgba(128, 128, 128, 0.362);
+}
