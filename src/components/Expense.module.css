@@ -23,6 +23,10 @@
   padding-top: 7.55px;
 }
 
+.box li:hover {
+  padding: 0px;
+}
+
 .box span {
   font-size: 18px;
   font-weight: 550;

@@ -59,7 +59,7 @@ function AddIncomeForm({ clickAddIncome, setBalance, balance }) {
           <option value="Paypal">Paypal</option>
           <option value="Amazon Pay">Amazon Pay</option>
           <option value="Paytm">Paytm</option>
-          <option vlaue="Cash">Cash</option>
+          <option value="Cash">Cash</option>
         </select>
         <input type="submit" className={styles["submit-button"]} />
         <button className={styles["close-button"]} onClick={clickAddIncome}>
