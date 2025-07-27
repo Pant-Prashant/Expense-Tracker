@@ -5,7 +5,6 @@
 
 .box {
   padding-top: 10px;
-
   text-align: center;
   vertical-align: middle;
   overflow: auto;
@@ -21,6 +20,7 @@
   border-color: rgba(128, 128, 128, 0.362);
   min-height: 45.5px;
   padding-top: 7.55px;
+  transition: all 0.3s ease-in-out;
 }
 
 .box li:hover {
@@ -30,4 +30,20 @@
 .box span {
   font-size: 18px;
   font-weight: 550;
+}
+
+.list-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.display-expense {
+  display: none;
+}
+.box li:hover .display-expense {
+  display: block;
+}
+.box li:hover .list-div {
+  display: none;
 }

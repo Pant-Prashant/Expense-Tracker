@@ -1,9 +1,10 @@
 import styles from "./DisplayExpense.module.css";
 import CircleGraph from "./CircleGraph";
 
-function DisplayExpense() {
-  let mainText = "Rent";
-  let expenseAmount = 2000;
+function DisplayExpense({ type, amount /*paymentList*/ }) {
+  let mainText = type;
+  let expenseAmount = amount;
+  /*let list = paymentList;*/
   const today = new Date();
   const date = today.toLocaleDateString("en-US", {
     month: "long",
@@ -19,7 +20,7 @@ function DisplayExpense() {
         </p>
       </div>
       <div className={styles.line}></div>
-      <CircleGraph percentage={20} expenseType={"Rent"} />
+      <CircleGraph percentage={20} expenseType={mainText} />
       <div className={styles["box3"]}>
         Recent Payments:
         <div className={styles["recent-payments"]}>

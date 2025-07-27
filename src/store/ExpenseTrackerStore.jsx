@@ -26,7 +26,15 @@ export function DataProvider({ children }) {
     Miscellaneous: 2000,
   });
 
-  let [expenseTypePercentage, setExpenseTypePercentage] = useState();
+  let [expenseTypePercentage, setExpenseTypePercentage] = useState([
+    (expensePerType.Clothes / totalExpense) * 100,
+    (expensePerType.EMI / totalExpense) * 100,
+    (expensePerType.Food / totalExpense) * 100,
+    (expensePerType.Rent / totalExpense) * 100,
+    (expensePerType.Entertainment / totalExpense) * 100,
+    (expensePerType.Remittance / totalExpense) * 100,
+    (expensePerType.Miscellaneous / totalExpense) * 100,
+  ]);
 
   function updateExpensePerType() {
     let newPercentage = [
@@ -38,6 +46,7 @@ export function DataProvider({ children }) {
       (expensePerType.Remittance / totalExpense) * 100,
       (expensePerType.Miscellaneous / totalExpense) * 100,
     ];
+    let round
     setExpenseTypePercentage(newPercentage);
   }
 
@@ -82,7 +91,9 @@ export function DataProvider({ children }) {
         setIncomeDetails,
         expenseDetails,
         setExpenseDetails,
+        expensePerType,
         setExpensePerType,
+        expenseTypePercentage,
         updateExpensePerType,
       }}
     >
