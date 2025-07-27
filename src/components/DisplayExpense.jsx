@@ -1,10 +1,11 @@
 import styles from "./DisplayExpense.module.css";
 import CircleGraph from "./CircleGraph";
+import SmallRecentPayments from "./SmallRecentPayments";
 
-function DisplayExpense({ type, amount /*paymentList*/ }) {
+function DisplayExpense({ type, amount, percentage, paymentList }) {
   let mainText = type;
   let expenseAmount = amount;
-  /*let list = paymentList;*/
+  let list = paymentList;
   const today = new Date();
   const date = today.toLocaleDateString("en-US", {
     month: "long",
@@ -20,28 +21,16 @@ function DisplayExpense({ type, amount /*paymentList*/ }) {
         </p>
       </div>
       <div className={styles.line}></div>
-      <CircleGraph percentage={20} expenseType={mainText} />
+      <CircleGraph percentage={percentage} expenseType={mainText} />
       <div className={styles["box3"]}>
         Recent Payments:
         <div className={styles["recent-payments"]}>
-          <div className={styles.info}>
-            <span style={{ fontSize: "12px", color: "#4b4b4bff" }}>
-              ₹{expenseAmount}
-            </span>
-            <span style={{ fontSize: "12px", color: "#4b4b4bff" }}>{date}</span>
-          </div>
-          <div className={styles.info}>
-            <span style={{ fontSize: "12px", color: "#4b4b4bff" }}>
-              ₹{expenseAmount}
-            </span>
-            <span style={{ fontSize: "12px", color: "#4b4b4bff" }}>{date}</span>
-          </div>
-          <div className={styles.info}>
-            <span style={{ fontSize: "12px", color: "#4b4b4bff" }}>
-              ₹{expenseAmount}
-            </span>
-            <span style={{ fontSize: "12px", color: "#4b4b4bff" }}>{date}</span>
-          </div>
+          {list.map(
+            (list) =>
+              list.date && (
+                <SmallRecentPayments amount={list.amount} date={list.date} />
+              )
+          )}
         </div>
       </div>
     </div>

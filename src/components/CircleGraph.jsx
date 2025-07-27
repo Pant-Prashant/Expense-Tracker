@@ -23,7 +23,7 @@ const CircleGraph = ({ percentage, expenseType }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: "12px",
+          fontSize: "10.5px",
           border: "0.5px solid rgba(0, 0, 0, 0.39)",
         }}
       >

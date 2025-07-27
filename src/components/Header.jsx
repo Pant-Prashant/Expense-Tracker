@@ -15,7 +15,7 @@ function Header() {
           }}
         >
           User Name <br />
-          Discription of User
+          Description of User
         </p>
         <CgProfile size={50} />
       </div>

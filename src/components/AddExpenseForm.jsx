@@ -8,6 +8,7 @@ function AddExpenseForm({ clickAddExpense, setBalance, balance }) {
     setExpenseDetails,
     setExpensePerType,
     updateExpensePerType,
+    updateSmallRecentPaymentsList,
   } = useContext(DataContext);
   const [value, setValue] = useState("");
 
@@ -30,12 +31,18 @@ function AddExpenseForm({ clickAddExpense, setBalance, balance }) {
         expenseAmount: amount.value,
         paymentMethod: medium.value,
       };
+      const today = new Date();
+      const shortDate = today.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+      });
       setExpenseDetails([newExpense, ...expenseDetails]);
       setExpensePerType((prev) => ({
         ...prev,
         [type.value]: prev[type.value] + Number(amount.value),
       }));
       updateExpensePerType();
+      updateSmallRecentPaymentsList(amount.value, shortDate, type.value);
       setBalance(balance - Number(amount.value));
       setValue("");
       clickAddExpense();
@@ -74,7 +81,7 @@ function AddExpenseForm({ clickAddExpense, setBalance, balance }) {
           <option value="Paypal">Paypal</option>
           <option value="Amazon Pay">Amazon Pay</option>
           <option value="Paytm">Paytm</option>
-          <option vlaue="Cash">Cash</option>
+          <option value="Cash">Cash</option>
         </select>
         Select expense type:
         <select

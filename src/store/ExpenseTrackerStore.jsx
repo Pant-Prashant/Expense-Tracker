@@ -1,4 +1,4 @@
-import { useState, createContext, useReducer } from "react";
+import { useState, createContext, useReducer, use } from "react";
 
 export let DataContext = createContext();
 
@@ -26,7 +26,7 @@ export function DataProvider({ children }) {
     Miscellaneous: 2000,
   });
 
-  let [expenseTypePercentage, setExpenseTypePercentage] = useState([
+  let percentage = [
     (expensePerType.Clothes / totalExpense) * 100,
     (expensePerType.EMI / totalExpense) * 100,
     (expensePerType.Food / totalExpense) * 100,
@@ -34,7 +34,11 @@ export function DataProvider({ children }) {
     (expensePerType.Entertainment / totalExpense) * 100,
     (expensePerType.Remittance / totalExpense) * 100,
     (expensePerType.Miscellaneous / totalExpense) * 100,
-  ]);
+  ];
+  let roundPercentage = percentage.map((num) => num.toFixed(2));
+
+  let [expenseTypePercentage, setExpenseTypePercentage] =
+    useState(roundPercentage);
 
   function updateExpensePerType() {
     let newPercentage = [
@@ -46,8 +50,85 @@ export function DataProvider({ children }) {
       (expensePerType.Remittance / totalExpense) * 100,
       (expensePerType.Miscellaneous / totalExpense) * 100,
     ];
-    let round
-    setExpenseTypePercentage(newPercentage);
+    let roundPercentage = newPercentage.map((num) => num.toFixed(2));
+    setExpenseTypePercentage(roundPercentage);
+  }
+
+  let [smallRecentPaymentsList, setSmallRecentPaymentList] = useState({
+    Clothes: [{ amount: 600, date: "July 28" }, {}, {}],
+    EMI: [
+      { amount: 500, date: "July 15" },
+      { amount: 500, date: "July 01" },
+      {},
+    ],
+    Food: [
+      { amount: 500, date: "July 25" },
+      { amount: 300, date: "July 17" },
+      { amount: 2000, date: "July 05" },
+    ],
+    Rent: [{ amount: 5000, date: "July 9" }, {}, {}],
+    Entertainment: [
+      { amount: 400, date: "July 18" },
+      { amount: 600, date: "July 02" },
+      {},
+    ],
+    Remittance: [
+      { amount: 500, date: "July 27" },
+      { amount: 2000, date: "July 18" },
+      { amount: 1000, date: "July 08" },
+    ],
+    Miscellaneous: [
+      { amount: 500, date: "July 28" },
+      { amount: 700, date: "July 20" },
+      { amount: 300, date: "July 19" },
+    ],
+  });
+
+  function updateSmallRecentPaymentsList(amount, date, type) {
+    switch (type) {
+      case "Clothes":
+        setSmallRecentPaymentList((prev) => ({
+          ...prev,
+          Clothes: [{ amount, date }, ...prev.Clothes.slice(0, -1)],
+        }));
+        break;
+      case "EMI":
+        setSmallRecentPaymentList((prev) => ({
+          ...prev,
+          EMI: [{ amount, date }, ...prev.EMI.slice(0, -1)],
+        }));
+        break;
+      case "Food":
+        setSmallRecentPaymentList((prev) => ({
+          ...prev,
+          Food: [{ amount, date }, ...prev.Food.slice(0, -1)],
+        }));
+        break;
+      case "Rent":
+        setSmallRecentPaymentList((prev) => ({
+          ...prev,
+          Rent: [{ amount, date }, ...prev.Rent.slice(0, -1)],
+        }));
+        break;
+      case "Entertainment":
+        setSmallRecentPaymentList((prev) => ({
+          ...prev,
+          Entertainment: [{ amount, date }, ...prev.Entertainment.slice(0, -1)],
+        }));
+        break;
+      case "Remittance":
+        setSmallRecentPaymentList((prev) => ({
+          ...prev,
+          Remittance: [{ amount, date }, ...prev.Remittance.slice(0, -1)],
+        }));
+        break;
+      case "Miscellaneous":
+        setSmallRecentPaymentList((prev) => ({
+          ...prev,
+          Miscellaneous: [{ amount, date }, ...prev.Miscellaneous.slice(0, -1)],
+        }));
+        break;
+    }
   }
 
   let [incomeDetails, setIncomeDetails] = useState([
@@ -95,6 +176,8 @@ export function DataProvider({ children }) {
         setExpensePerType,
         expenseTypePercentage,
         updateExpensePerType,
+        smallRecentPaymentsList,
+        updateSmallRecentPaymentsList,
       }}
     >
       {children}

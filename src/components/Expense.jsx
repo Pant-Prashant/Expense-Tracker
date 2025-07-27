@@ -10,8 +10,8 @@ import { DataContext } from "../store/ExpenseTrackerStore";
 import { useContext } from "react";
 
 function Expense() {
-  const { expensePerType, expenseTypePercentage } = useContext(DataContext);
-  console.log(expenseTypePercentage);
+  const { expensePerType, expenseTypePercentage, smallRecentPaymentsList } =
+    useContext(DataContext);
 
   return (
     <div className="expense-div container-cover">
@@ -24,11 +24,16 @@ function Expense() {
               <span>
                 Clothes <div></div>
               </span>{" "}
-              <span>80%</span>
+              <span>{expenseTypePercentage[0]}%</span>
             </div>
 
             <div className={styles["display-expense"]}>
-              <DisplayExpense type="Clothes" amount={expensePerType.Clothes} />
+              <DisplayExpense
+                type="Clothes"
+                amount={expensePerType.Clothes}
+                percentage={expenseTypePercentage[0]}
+                paymentList={smallRecentPaymentsList.Clothes}
+              />
             </div>
           </li>
 
@@ -38,60 +43,84 @@ function Expense() {
                 size={25}
                 style={{ marginRight: "2.5px", marginLeft: "2.5px" }}
               />{" "}
-              <span>Rent</span> <span>80%</span>
-            </div>
-            <div className={styles["display-expense"]}>
-              <DisplayExpense type="Rent" amount={expensePerType.Rent} />
-            </div>
-          </li>
-          <li>
-            <div className={styles["list-div"]}>
-              <FaPerson size={30} /> <span>Remittance</span> <span>80%</span>
+              <span>Rent</span> <span>{expenseTypePercentage[3]}%</span>
             </div>
             <div className={styles["display-expense"]}>
               <DisplayExpense
-                type="Remittance"
-                amount={expensePerType.Remittance}
+                type="Rent"
+                amount={expensePerType.Rent}
+                percentage={expenseTypePercentage[3]}
+                paymentList={smallRecentPaymentsList.Rent}
               />
             </div>
           </li>
           <li>
             <div className={styles["list-div"]}>
-              <CiCreditCard1 size={30} /> <span>EMI</span> <span>80%</span>
+              <FaPerson size={30} /> <span>Remittance</span>{" "}
+              <span>{expenseTypePercentage[5]}%</span>
             </div>
             <div className={styles["display-expense"]}>
-              <DisplayExpense type="EMI" amount={expensePerType.EMI} />
+              <DisplayExpense
+                type="Remittance"
+                amount={expensePerType.Remittance}
+                percentage={expenseTypePercentage[5]}
+                paymentList={smallRecentPaymentsList.Remittance}
+              />
             </div>
           </li>
           <li>
             <div className={styles["list-div"]}>
-              <IoFastFoodOutline size={30} /> <span>Food</span> <span>80%</span>
+              <CiCreditCard1 size={30} /> <span>EMI</span>{" "}
+              <span>{expenseTypePercentage[1]}%</span>
             </div>
             <div className={styles["display-expense"]}>
-              <DisplayExpense type="Food" amount={expensePerType.Food} />
+              <DisplayExpense
+                type="EMI"
+                amount={expensePerType.EMI}
+                percentage={expenseTypePercentage[1]}
+                paymentList={smallRecentPaymentsList.EMI}
+              />
+            </div>
+          </li>
+          <li>
+            <div className={styles["list-div"]}>
+              <IoFastFoodOutline size={30} /> <span>Food</span>{" "}
+              <span>{expenseTypePercentage[2]}%</span>
+            </div>
+            <div className={styles["display-expense"]}>
+              <DisplayExpense
+                type="Food"
+                amount={expensePerType.Food}
+                percentage={expenseTypePercentage[2]}
+                paymentList={smallRecentPaymentsList.Food}
+              />
             </div>
           </li>
           <li>
             <div className={styles["list-div"]}>
               <CgSmileMouthOpen size={30} /> <span>Entertainment</span>
-              <span>80%</span>
+              <span>{expenseTypePercentage[4]}%</span>
             </div>
             <div className={styles["display-expense"]}>
               <DisplayExpense
                 type="Entertainment"
                 amount={expensePerType.Entertainment}
+                percentage={expenseTypePercentage[4]}
+                paymentList={smallRecentPaymentsList.Entertainment}
               />
             </div>
           </li>
           <li>
             <div className={styles["list-div"]}>
               <MdOutlineStarPurple500 size={30} /> <span>Miscellaneous</span>
-              <span>80%</span>
+              <span>{expenseTypePercentage[6]}%</span>
             </div>
             <div className={styles["display-expense"]}>
               <DisplayExpense
                 type="Miscellaneous"
                 amount={expensePerType.Miscellaneous}
+                percentage={expenseTypePercentage[6]}
+                paymentList={smallRecentPaymentsList.Miscellaneous}
               />
             </div>
           </li>
