@@ -56,7 +56,7 @@ function AddIncomeForm({ clickAddIncome, setBalance, balance }) {
         >
           <option hidden>Click here!</option>
           <option value="Google Pay">Google Pay</option>
-          <option value="Paypal">Paypal</option>
+          <option value="PayPal">PayPal</option>
           <option value="Amazon Pay">Amazon Pay</option>
           <option value="Paytm">Paytm</option>
           <option value="Cash">Cash</option>

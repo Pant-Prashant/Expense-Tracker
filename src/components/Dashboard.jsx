@@ -7,13 +7,9 @@ import RecentExpenses from "./RecentExpenses";
 import AddExpenseForm from "./AddExpenseForm";
 import { useState } from "react";
 
-function Dashboard({
-  setIncomeDetails,
-  incomeDetails,
-  setExpenseDetails,
-  expenseDetails,
-}) {
+function Dashboard() {
   let [addIncomeVisibility, setAddIncomeVisibility] = useState(false);
+
   function clickAddIncome(event) {
     setAddIncomeVisibility(!addIncomeVisibility);
   }

@@ -1,15 +1,15 @@
 import styles from "./AddExpenseForm.module.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../store/ExpenseTrackerStore";
 
 function AddExpenseForm({ clickAddExpense, setBalance, balance }) {
   let {
     expenseDetails,
     setExpenseDetails,
-    setExpensePerType,
     updateExpensePerType,
     updateSmallRecentPaymentsList,
   } = useContext(DataContext);
+
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
@@ -37,12 +37,10 @@ function AddExpenseForm({ clickAddExpense, setBalance, balance }) {
         day: "numeric",
       });
       setExpenseDetails([newExpense, ...expenseDetails]);
-      setExpensePerType((prev) => ({
-        ...prev,
-        [type.value]: prev[type.value] + Number(amount.value),
-      }));
-      updateExpensePerType();
+
       updateSmallRecentPaymentsList(amount.value, shortDate, type.value);
+
+      updateExpensePerType(amount.value, type.value);
       setBalance(balance - Number(amount.value));
       setValue("");
       clickAddExpense();
@@ -60,7 +58,7 @@ function AddExpenseForm({ clickAddExpense, setBalance, balance }) {
           placeholder="Expense Name"
           style={{ fontSize: "17px" }}
         ></input>
-        Enter amount paied:
+        Enter amount paid:
         <input
           class="form-control form-control-sm"
           type="text"
@@ -78,7 +76,7 @@ function AddExpenseForm({ clickAddExpense, setBalance, balance }) {
         >
           <option hidden>Click here!</option>
           <option value="Google Pay">Google Pay</option>
-          <option value="Paypal">Paypal</option>
+          <option value="PayPal">PayPal</option>
           <option value="Amazon Pay">Amazon Pay</option>
           <option value="Paytm">Paytm</option>
           <option value="Cash">Cash</option>
@@ -94,9 +92,9 @@ function AddExpenseForm({ clickAddExpense, setBalance, balance }) {
           <option value="EMI">EMI</option>
           <option value="Rent">Rent</option>
           <option value="Entertainment">Entertainment</option>
-          <option vlaue="Food">Food</option>
-          <option vlaue="Remittance">Remittance</option>
-          <option vlaue="Miscellaneous">Miscellaneous</option>
+          <option value="Food">Food</option>
+          <option value="Remittance">Remittance</option>
+          <option value="Miscellaneous">Miscellaneous</option>
         </select>
         <input type="submit" className={styles["submit-button"]} />
         <button className={styles["close-button"]} onClick={clickAddExpense}>

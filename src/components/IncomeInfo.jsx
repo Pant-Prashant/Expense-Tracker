@@ -27,7 +27,7 @@ function IncomeInfo({ name, method, amount, currentDate }) {
             <FaGooglePay size={35}></FaGooglePay>
           )}
           {incomeMethod == "Paytm" && <SiPaytm size={35}></SiPaytm>}
-          {incomeMethod == "Paypal" && <RiPaypalFill size={30}></RiPaypalFill>}
+          {incomeMethod == "PayPal" && <RiPaypalFill size={30}></RiPaypalFill>}
           {incomeMethod == "Amazon Pay" && (
             <SiAmazonpay size={32}></SiAmazonpay>
           )}

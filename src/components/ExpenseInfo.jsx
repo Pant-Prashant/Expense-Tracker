@@ -30,7 +30,7 @@ function ExpenseInfo({ name, amount, type, method, currentDate }) {
             <FaGooglePay size={35}></FaGooglePay>
           )}
           {paymentMethod == "Paytm" && <SiPaytm size={35}></SiPaytm>}
-          {paymentMethod == "Paypal" && <RiPaypalFill size={30}></RiPaypalFill>}
+          {paymentMethod == "PayPal" && <RiPaypalFill size={30}></RiPaypalFill>}
           {paymentMethod == "Amazon Pay" && (
             <SiAmazonpay size={32}></SiAmazonpay>
           )}

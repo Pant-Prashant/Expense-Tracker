@@ -1,4 +1,4 @@
-import { useState, createContext, useReducer, use } from "react";
+import { useState, createContext, useEffect } from "react";
 
 export let DataContext = createContext();
 
@@ -14,7 +14,7 @@ export function DataProvider({ children }) {
       console.log();
     }
   }*/
-  let totalExpense = 18100;
+  let [totalExpense, setTotalExpense] = useState(18100);
 
   let [expensePerType, setExpensePerType] = useState({
     Clothes: 600,
@@ -40,7 +40,26 @@ export function DataProvider({ children }) {
   let [expenseTypePercentage, setExpenseTypePercentage] =
     useState(roundPercentage);
 
-  function updateExpensePerType() {
+  function updateExpensePerType(amount, type) {
+    setExpensePerType((prev) => ({
+      ...prev,
+      [type]: prev[type] + Number(amount),
+    }));
+    setTotalExpense((prev) => prev + Number(amount));
+  }
+  useEffect(() => {
+    if (totalExpense === 0) {
+      setExpenseTypePercentage([
+        "0.00",
+        "0.00",
+        "0.00",
+        "0.00",
+        "0.00",
+        "0.00",
+        "0.00",
+      ]);
+      return;
+    }
     let newPercentage = [
       (expensePerType.Clothes / totalExpense) * 100,
       (expensePerType.EMI / totalExpense) * 100,
@@ -50,9 +69,9 @@ export function DataProvider({ children }) {
       (expensePerType.Remittance / totalExpense) * 100,
       (expensePerType.Miscellaneous / totalExpense) * 100,
     ];
-    let roundPercentage = newPercentage.map((num) => num.toFixed(2));
-    setExpenseTypePercentage(roundPercentage);
-  }
+    let roundOfPercentage = newPercentage.map((num) => num.toFixed(2));
+    setExpenseTypePercentage(roundOfPercentage);
+  }, [expensePerType, totalExpense]);
 
   let [smallRecentPaymentsList, setSmallRecentPaymentList] = useState({
     Clothes: [{ amount: 600, date: "July 28" }, {}, {}],
@@ -142,7 +161,7 @@ export function DataProvider({ children }) {
     {
       date: new Date().toLocaleString(),
       incomeName: "Crypto",
-      incomeMethod: "Paypal",
+      incomeMethod: "PayPal",
       amount: 5000,
     },
   ]);
@@ -178,6 +197,8 @@ export function DataProvider({ children }) {
         updateExpensePerType,
         smallRecentPaymentsList,
         updateSmallRecentPaymentsList,
+        totalExpense,
+        setTotalExpense,
       }}
     >
       {children}
