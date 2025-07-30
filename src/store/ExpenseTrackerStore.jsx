@@ -14,16 +14,24 @@ export function DataProvider({ children }) {
       console.log();
     }
   }*/
-  let [totalExpense, setTotalExpense] = useState(18100);
+  let [totalExpense, setTotalExpense] = useState(() => {
+    const saved = localStorage.getItem("totalExpense");
+    return saved ? JSON.parse(saved) : 0;
+  });
 
-  let [expensePerType, setExpensePerType] = useState({
-    Clothes: 600,
-    EMI: 1000,
-    Food: 4000,
-    Rent: 5000,
-    Entertainment: 1000,
-    Remittance: 4500,
-    Miscellaneous: 2000,
+  let [expensePerType, setExpensePerType] = useState(() => {
+    const saved = localStorage.getItem("expensePerType");
+    return saved
+      ? JSON.parse(saved)
+      : {
+          Clothes: 0,
+          EMI: 0,
+          Food: 0,
+          Rent: 0,
+          Entertainment: 0,
+          Remittance: 0,
+          Miscellaneous: 0,
+        };
   });
 
   let percentage = [
@@ -73,34 +81,19 @@ export function DataProvider({ children }) {
     setExpenseTypePercentage(roundOfPercentage);
   }, [expensePerType, totalExpense]);
 
-  let [smallRecentPaymentsList, setSmallRecentPaymentList] = useState({
-    Clothes: [{ amount: 600, date: "July 28" }, {}, {}],
-    EMI: [
-      { amount: 500, date: "July 15" },
-      { amount: 500, date: "July 01" },
-      {},
-    ],
-    Food: [
-      { amount: 500, date: "July 25" },
-      { amount: 300, date: "July 17" },
-      { amount: 2000, date: "July 05" },
-    ],
-    Rent: [{ amount: 5000, date: "July 9" }, {}, {}],
-    Entertainment: [
-      { amount: 400, date: "July 18" },
-      { amount: 600, date: "July 02" },
-      {},
-    ],
-    Remittance: [
-      { amount: 500, date: "July 27" },
-      { amount: 2000, date: "July 18" },
-      { amount: 1000, date: "July 08" },
-    ],
-    Miscellaneous: [
-      { amount: 500, date: "July 28" },
-      { amount: 700, date: "July 20" },
-      { amount: 300, date: "July 19" },
-    ],
+  let [smallRecentPaymentsList, setSmallRecentPaymentList] = useState(() => {
+    const saved = localStorage.getItem("smallRecentPaymentsList");
+    return saved
+      ? JSON.parse(saved)
+      : {
+          Clothes: [{}, {}, {}],
+          EMI: [{}, {}, {}],
+          Food: [{}, {}, {}],
+          Rent: [{}, {}, {}],
+          Entertainment: [{}, {}, {}],
+          Remittance: [{}, {}, {}],
+          Miscellaneous: [{}, {}, {}],
+        };
   });
 
   function updateSmallRecentPaymentsList(amount, date, type) {
@@ -150,39 +143,43 @@ export function DataProvider({ children }) {
     }
   }
 
-  let [incomeDetails, setIncomeDetails] = useState([
-    {
-      date: new Date().toLocaleString(),
-      incomeName: "Salary",
-      incomeMethod: "Google Pay",
-      amount: 100000,
-    },
+  let [incomeDetails, setIncomeDetails] = useState(() => {
+    const saved = localStorage.getItem("incomeDetails");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-    {
-      date: new Date().toLocaleString(),
-      incomeName: "Crypto",
-      incomeMethod: "PayPal",
-      amount: 5000,
-    },
-  ]);
+  let [expenseDetails, setExpenseDetails] = useState(() => {
+    const saved = localStorage.getItem("expenseDetails");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  let [expenseDetails, setExpenseDetails] = useState([
-    {
-      date: new Date().toLocaleString(),
-      expenseAmount: 5000,
-      expenseName: "Zudio",
-      expenseType: "Clothes",
-      paymentMethod: "Cash",
-    },
+  useEffect(() => {
+    localStorage.setItem("incomeDetails", JSON.stringify(incomeDetails));
+  }, [incomeDetails]);
 
-    {
-      date: new Date().toLocaleString(),
-      expenseAmount: 15000,
-      expenseName: "Card Payment",
-      expenseType: "EMI",
-      paymentMethod: "Google Pay",
-    },
-  ]);
+  useEffect(() => {
+    localStorage.setItem("expenseDetails", JSON.stringify(expenseDetails));
+  }, [expenseDetails]);
+
+  useEffect(() => {
+    localStorage.setItem("expensePerType", JSON.stringify(expensePerType));
+  }, [expensePerType]);
+
+  useEffect(() => {
+    localStorage.setItem("totalExpense", JSON.stringify(totalExpense));
+  }, [totalExpense]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "smallRecentPaymentsList",
+      JSON.stringify(smallRecentPaymentsList)
+    );
+  }, [smallRecentPaymentsList]);
+
+  function clearLocalStorage() {
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <DataContext.Provider
@@ -199,6 +196,7 @@ export function DataProvider({ children }) {
         updateSmallRecentPaymentsList,
         totalExpense,
         setTotalExpense,
+        clearLocalStorage,
       }}
     >
       {children}

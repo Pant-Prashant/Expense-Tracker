@@ -1,5 +1,5 @@
 import styles from "./AddExpenseForm.module.css";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { DataContext } from "../store/ExpenseTrackerStore";
 
 function AddExpenseForm({ clickAddExpense, setBalance, balance }) {

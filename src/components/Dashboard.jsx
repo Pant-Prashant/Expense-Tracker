@@ -5,7 +5,7 @@ import { GrSubtractCircle } from "react-icons/gr";
 import AddIncomeForm from "./AddIncomeForm";
 import RecentExpenses from "./RecentExpenses";
 import AddExpenseForm from "./AddExpenseForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Dashboard() {
   let [addIncomeVisibility, setAddIncomeVisibility] = useState(false);
@@ -19,7 +19,13 @@ function Dashboard() {
     setAddExpenseVisibility(!addExpenseVisibility);
   }
 
-  const [balance, setBalance] = useState(1000);
+  const [balance, setBalance] = useState(() => {
+    let saved = localStorage.getItem("balance");
+    return saved ? JSON.parse(saved) : 0;
+  });
+  useEffect(() => {
+    localStorage.setItem("balance", JSON.stringify(balance));
+  }, [balance]);
   const className = classNames({
     [styles.balance]: true,
     [styles.red]: balance < 0,
