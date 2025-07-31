@@ -7,7 +7,18 @@ Helps users manage their finances by categorizing expenses and displaying income
 
 ## 📸 Screenshots
 
-> 📷(comming soon)
+### 🏠 Home Page
+![Full Page](public/Screenshots/full-page.png)
+
+### ➖💸 Add Expense
+![Add Expense](public/Screenshots/add-expense.png)
+
+### ➕💰 Add Income
+![Add Income](public/Screenshots/add-income.png)
+
+### 📋📊 Expense
+![Expense Per Type](public/Screenshots/expense-per-type.png)
+![Extra Details](public/Screenshots/individual-expense-per-type.png)
 
 ---
 
@@ -16,7 +27,7 @@ Helps users manage their finances by categorizing expenses and displaying income
 - ➕ Add new **expenses** and **income**
 - 📋 View a detailed list of transactions
 - 📂 Categorize expenses (e.g., Food, Travel, Shopping, etc.)
-- 📊 Graphical visualization (coming soon)
+- 📊 Graphical visualization
 - 💾 Plan to add persistent **backend data storage**
 - 📱 Designed for **desktop** (mobile version may be added later)
 
