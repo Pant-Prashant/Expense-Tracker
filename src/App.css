@@ -11,8 +11,8 @@ body {
 }
 .div2 {
   padding: 5px;
-  padding-left: 110px;
-  padding-right: 110px;
+  padding-left: 7%;
+  padding-right: 7%;
   display: flex;
 
   width: 100%;
@@ -72,6 +72,7 @@ body {
 .dashboard-div {
   width: 70%;
   position: relative;
+  min-width: 600px;
 }
 
 .container {
@@ -95,4 +96,31 @@ body {
 
 .container-cover:hover {
   padding: 7px;
+}
+
+@media (max-width: 850px) {
+  .div2 {
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    height: 1615px;
+  }
+  .income-div,
+  .expense-div {
+    padding: 0px;
+    padding-top: 10px;
+    padding-left: 25%;
+    padding-right: 25%;
+    width: 100%;
+    height: 400px;
+  }
+  .income-div:hover,
+  .expense-div:hover {
+    padding-left: 24%;
+    padding-right: 24%;
+  }
+  .div3 {
+    align-items: center;
+    width: 100%;
+  }
 }
