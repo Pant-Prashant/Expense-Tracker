@@ -73,7 +73,7 @@ body {
   width: 70%;
   position: relative;
   min-width: 600px;
-  min-height: 800px;
+  min-height: 660px;
 }
 
 .container {
@@ -104,7 +104,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 0px;
-    height: 1615px;
+    height: 1470px;
   }
   .income-div,
   .expense-div {
