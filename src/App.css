@@ -6,7 +6,7 @@ body {
 }
 
 .div1 {
-  height: 100%;
+  height: fit-content;
   width: 100%;
 }
 .div2 {
@@ -14,7 +14,6 @@ body {
   padding-left: 7%;
   padding-right: 7%;
   display: flex;
-
   width: 100%;
   height: 670px;
 }
@@ -72,7 +71,6 @@ body {
 .dashboard-div {
   width: 70%;
   position: relative;
-  min-width: 600px;
   min-height: 660px;
 }
 
@@ -106,6 +104,9 @@ body {
     padding: 0px;
     height: 1470px;
   }
+  .dashboard-div {
+    width: 100%;
+  }
   .income-div,
   .expense-div {
     padding: 0px;
@@ -123,5 +124,60 @@ body {
   .div3 {
     align-items: center;
     width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .income-div,
+  .expense-div {
+    padding-left: 13%;
+    padding-right: 13%;
+  }
+
+  .income-div:hover,
+  .expense-div:hover {
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+}
+
+@media (max-width: 450px) {
+  .income-div,
+  .expense-div {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+
+  .income-div:hover,
+  .expense-div:hover {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+}
+
+@media (max-width: 530px) {
+  .footer-div {
+    margin-top: 5%;
+  }
+}
+
+@media (max-width: 470px) {
+  .footer-div {
+    margin-top: 10%;
+  }
+}
+@media (max-width: 400px) {
+  .footer-div {
+    margin-top: 30%;
+  }
+}
+@media (max-width: 340px) {
+  .footer-div {
+    margin-top: 35%;
+  }
+}
+@media (max-width: 290px) {
+  .footer-div {
+    margin-top: 40%;
   }
 }

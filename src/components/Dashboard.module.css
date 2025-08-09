@@ -53,6 +53,7 @@
 }
 
 .lower-div {
+  text-align: auto;
   height: calc(100% - 162px);
   width: 100%;
   padding: 10px 11%;
@@ -75,5 +76,26 @@
 @media (max-width: 850px) {
   .lower-div {
     height: 475px;
+  }
+  .lower-div {
+    padding: 10px 5%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 650px) {
+  .top-div {
+    padding: 15px 0;
+  }
+
+  .lower-div {
+    padding: 10px 0px;
+  }
+}
+
+@media (max-width: 400px) {
+  .top-div {
+    flex-direction: column;
+    align-items: center;
   }
 }
